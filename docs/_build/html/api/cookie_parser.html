@@ -1,0 +1,893 @@
+<!doctype html>
+<html class="no-js" lang="en" data-content_root="../">
+  <head><meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light dark"><meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="index" title="Index" href="../genindex.html"><link rel="search" title="Search" href="../search.html"><link rel="next" title="Exceptions" href="exceptions.html"><link rel="prev" title="HeaderParser API" href="header_parser.html">
+        <link rel="prefetch" href="../_static/logo.png" as="image">
+
+    <link rel="shortcut icon" href="../_static/favicon.ico"><!-- Generated with Sphinx 8.3.0 and Furo 2025.09.25 -->
+        <title>CookieParser API - pyheaderparse</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo.css?v=580074bf" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/furo-extensions.css?v=8dab3a3b" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=aada8b74" />
+    
+    
+
+
+<style>
+  body {
+    --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-primary: #7C4DFF;
+  --color-brand-content: #7C4DFF;
+  
+  }
+  @media not print {
+    body[data-theme="dark"] {
+      --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-primary: #B388FF;
+  --color-brand-content: #B388FF;
+  --color-background-primary: #1a1a2e;
+  --color-background-secondary: #16213e;
+  --color-background-hover: #1f3460;
+  --color-background-hover--transparent: #1f346080;
+  --color-background-border: #2a3f5f;
+  --color-foreground-primary: #e8e8e8;
+  --color-foreground-secondary: #b8b8b8;
+  --color-foreground-muted: #808080;
+  --color-foreground-border: #3d5a80;
+  --color-announcement-background: #2a3f5f;
+  --color-announcement-text: #e8e8e8;
+  --color-admonition-background: #1f3460;
+  
+    }
+    @media (prefers-color-scheme: dark) {
+      body:not([data-theme="light"]) {
+        --color-code-background: #272822;
+  --color-code-foreground: #f8f8f2;
+  --color-brand-primary: #B388FF;
+  --color-brand-content: #B388FF;
+  --color-background-primary: #1a1a2e;
+  --color-background-secondary: #16213e;
+  --color-background-hover: #1f3460;
+  --color-background-hover--transparent: #1f346080;
+  --color-background-border: #2a3f5f;
+  --color-foreground-primary: #e8e8e8;
+  --color-foreground-secondary: #b8b8b8;
+  --color-foreground-muted: #808080;
+  --color-foreground-border: #3d5a80;
+  --color-announcement-background: #2a3f5f;
+  --color-announcement-text: #e8e8e8;
+  --color-admonition-background: #1f3460;
+  
+      }
+    }
+  }
+</style></head>
+  <body>
+    
+    <script>
+      document.body.dataset.theme = localStorage.getItem("theme") || "auto";
+    </script>
+    
+
+<svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+  <symbol id="svg-toc" viewBox="0 0 24 24">
+    <title>Contents</title>
+    <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 1024 1024">
+      <path d="M408 442h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm-8 204c0 4.4 3.6 8 8 8h480c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H408c-4.4 0-8 3.6-8 8v56zm504-486H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0 632H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM115.4 518.9L271.7 642c5.8 4.6 14.4.5 14.4-6.9V388.9c0-7.4-8.5-11.5-14.4-6.9L115.4 505.1a8.74 8.74 0 0 0 0 13.8z"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-menu" viewBox="0 0 24 24">
+    <title>Menu</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-menu">
+      <line x1="3" y1="12" x2="21" y2="12"></line>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <line x1="3" y1="18" x2="21" y2="18"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-arrow-right" viewBox="0 0 24 24">
+    <title>Expand</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather-chevron-right">
+      <polyline points="9 18 15 12 9 6"></polyline>
+    </svg>
+  </symbol>
+  <symbol id="svg-sun" viewBox="0 0 24 24">
+    <title>Light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="feather-sun">
+      <circle cx="12" cy="12" r="5"></circle>
+      <line x1="12" y1="1" x2="12" y2="3"></line>
+      <line x1="12" y1="21" x2="12" y2="23"></line>
+      <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+      <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+      <line x1="1" y1="12" x2="3" y2="12"></line>
+      <line x1="21" y1="12" x2="23" y2="12"></line>
+      <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+      <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon" viewBox="0 0 24 24">
+    <title>Dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-moon">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M12 3c.132 0 .263 0 .393 0a7.5 7.5 0 0 0 7.92 12.446a9 9 0 1 1 -8.313 -12.454z" />
+    </svg>
+  </symbol>
+  <symbol id="svg-sun-with-moon" viewBox="0 0 24 24">
+    <title>Auto light/dark, in light mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path style="opacity: 50%" d="M 5.411 14.504 C 5.471 14.504 5.532 14.504 5.591 14.504 C 3.639 16.319 4.383 19.569 6.931 20.352 C 7.693 20.586 8.512 20.551 9.25 20.252 C 8.023 23.207 4.056 23.725 2.11 21.184 C 0.166 18.642 1.702 14.949 4.874 14.536 C 5.051 14.512 5.231 14.5 5.411 14.5 L 5.411 14.504 Z"/>
+      <line x1="14.5" y1="3.25" x2="14.5" y2="1.25"/>
+      <line x1="14.5" y1="15.85" x2="14.5" y2="17.85"/>
+      <line x1="10.044" y1="5.094" x2="8.63" y2="3.68"/>
+      <line x1="19" y1="14.05" x2="20.414" y2="15.464"/>
+      <line x1="8.2" y1="9.55" x2="6.2" y2="9.55"/>
+      <line x1="20.8" y1="9.55" x2="22.8" y2="9.55"/>
+      <line x1="10.044" y1="14.006" x2="8.63" y2="15.42"/>
+      <line x1="19" y1="5.05" x2="20.414" y2="3.636"/>
+      <circle cx="14.5" cy="9.55" r="3.6"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-moon-with-sun" viewBox="0 0 24 24">
+    <title>Auto light/dark, in dark mode</title>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round"
+      class="icon-custom-derived-from-feather-sun-and-tabler-moon">
+      <path d="M 8.282 7.007 C 8.385 7.007 8.494 7.007 8.595 7.007 C 5.18 10.184 6.481 15.869 10.942 17.24 C 12.275 17.648 13.706 17.589 15 17.066 C 12.851 22.236 5.91 23.143 2.505 18.696 C -0.897 14.249 1.791 7.786 7.342 7.063 C 7.652 7.021 7.965 7 8.282 7 L 8.282 7.007 Z"/>
+      <line style="opacity: 50%" x1="18" y1="3.705" x2="18" y2="2.5"/>
+      <line style="opacity: 50%" x1="18" y1="11.295" x2="18" y2="12.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="4.816" x2="14.464" y2="3.964"/>
+      <line style="opacity: 50%" x1="20.711" y1="10.212" x2="21.563" y2="11.063"/>
+      <line style="opacity: 50%" x1="14.205" y1="7.5" x2="13.001" y2="7.5"/>
+      <line style="opacity: 50%" x1="21.795" y1="7.5" x2="23" y2="7.5"/>
+      <line style="opacity: 50%" x1="15.316" y1="10.184" x2="14.464" y2="11.036"/>
+      <line style="opacity: 50%" x1="20.711" y1="4.789" x2="21.563" y2="3.937"/>
+      <circle style="opacity: 50%" cx="18" cy="7.5" r="2.169"/>
+    </svg>
+  </symbol>
+  <symbol id="svg-pencil" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-pencil-code">
+      <path d="M4 20h4l10.5 -10.5a2.828 2.828 0 1 0 -4 -4l-10.5 10.5v4" />
+      <path d="M13.5 6.5l4 4" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+  <symbol id="svg-eye" viewBox="0 0 24 24">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+      stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="icon-tabler-eye-code">
+      <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+      <path d="M10 12a2 2 0 1 0 4 0a2 2 0 0 0 -4 0" />
+      <path
+        d="M11.11 17.958c-3.209 -.307 -5.91 -2.293 -8.11 -5.958c2.4 -4 5.4 -6 9 -6c3.6 0 6.6 2 9 6c-.21 .352 -.427 .688 -.647 1.008" />
+      <path d="M20 21l2 -2l-2 -2" />
+      <path d="M17 17l-2 2l2 2" />
+    </svg>
+  </symbol>
+</svg>
+
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle site navigation sidebar">
+<input type="checkbox" class="sidebar-toggle" name="__toc" id="__toc" aria-label="Toggle table of contents sidebar">
+<label class="overlay sidebar-overlay" for="__navigation"></label>
+<label class="overlay toc-overlay" for="__toc"></label>
+
+<a class="skip-to-content muted-link" href="#furo-main-content">Skip to content</a>
+
+
+
+<div class="page">
+  <header class="mobile-header">
+    <div class="header-left">
+      <label class="nav-overlay-icon" for="__navigation">
+        <span class="icon"><svg><use href="#svg-menu"></use></svg></span>
+      </label>
+    </div>
+    <div class="header-center">
+      <a href="../index.html"><div class="brand">pyheaderparse</div></a>
+    </div>
+    <div class="header-right">
+      <div class="theme-toggle-container theme-toggle-header">
+        <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+          <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+          <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+          <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+          <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+        </button>
+      </div>
+      <label class="toc-overlay-icon toc-header-icon" for="__toc">
+        <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+      </label>
+    </div>
+  </header>
+  <aside class="sidebar-drawer">
+    <div class="sidebar-container">
+      
+      <div class="sidebar-sticky"><a class="sidebar-brand" href="../index.html">
+  <div class="sidebar-logo-container">
+    <img class="sidebar-logo" src="../_static/logo.png" alt="Logo"/>
+  </div>
+  
+  <span class="sidebar-brand-text">pyheaderparse</span>
+  
+</a><form class="sidebar-search-container" method="get" action="../search.html" role="search">
+  <input class="sidebar-search" placeholder="Search" name="q" aria-label="Search">
+  <input type="hidden" name="check_keywords" value="yes">
+  <input type="hidden" name="area" value="default">
+</form>
+<div id="searchbox"></div><div class="sidebar-scroll"><div class="sidebar-tree">
+  <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart.html">Quick Start</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../usage/header_parser.html">HeaderParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/cookie_parser.html">CookieParser</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/special_headers.html">Special Headers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usage/cli.html">Command Line Interface</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current has-children"><a class="reference internal" href="modules.html">API Reference</a><input aria-label="Toggle navigation of API Reference" checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" role="switch" type="checkbox"/><label for="toctree-checkbox-1"><span class="icon"><svg><use href="#svg-arrow-right"></use></svg></span></label><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="header_parser.html">HeaderParser API</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">CookieParser API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="header_parser.html">HeaderParser API</a></li>
+<li class="toctree-l1 current current-page"><a class="current reference internal" href="#">CookieParser API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="exceptions.html">Exceptions</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+</ul>
+
+</div>
+</div>
+
+      </div>
+      
+    </div>
+  </aside>
+  <div class="main">
+    <div class="content">
+      <div class="article-container">
+        <a href="#" class="back-to-top muted-link">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12z"></path>
+          </svg>
+          <span>Back to top</span>
+        </a>
+        <div class="content-icon-container">
+          <div class="view-this-page">
+  <a class="muted-link" href="https://github.com/cumulus13/pyheaderparse/blob/main/docs/api/cookie_parser.rst?plain=true" title="View this page">
+    <svg><use href="#svg-eye"></use></svg>
+    <span class="visually-hidden">View this page</span>
+  </a>
+</div><div class="edit-this-page">
+  <a class="muted-link" href="https://github.com/cumulus13/pyheaderparse/edit/main/docs/api/cookie_parser.rst" rel="edit" title="Edit this page">
+    <svg><use href="#svg-pencil"></use></svg>
+    <span class="visually-hidden">Edit this page</span>
+  </a>
+</div><div class="theme-toggle-container theme-toggle-content">
+            <button class="theme-toggle" aria-label="Toggle Light / Dark / Auto color theme">
+              <svg class="theme-icon-when-auto-light"><use href="#svg-sun-with-moon"></use></svg>
+              <svg class="theme-icon-when-auto-dark"><use href="#svg-moon-with-sun"></use></svg>
+              <svg class="theme-icon-when-dark"><use href="#svg-moon"></use></svg>
+              <svg class="theme-icon-when-light"><use href="#svg-sun"></use></svg>
+            </button>
+          </div>
+          <label class="toc-overlay-icon toc-content-icon" for="__toc">
+            <span class="icon"><svg><use href="#svg-toc"></use></svg></span>
+          </label>
+        </div>
+        <article role="main" id="furo-main-content">
+          <section id="module-parser_header.parser">
+<span id="cookieparser-api"></span><h1>CookieParser API<a class="headerlink" href="#module-parser_header.parser" title="Link to this heading">¶</a></h1>
+<section id="cookieparser-class">
+<h2>CookieParser Class<a class="headerlink" href="#cookieparser-class" title="Link to this heading">¶</a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">parser_header.parser.</span></span><span class="sig-name descname"><span class="pre">CookieParser</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser" title="Link to this definition">¶</a></dt>
+<dd><p>Parser for HTTP cookies with multiple extraction methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><em>bytes</em></a><em> | </em><em>None</em>) – Raw cookie string or bytes to parse</p></li>
+<li><p><strong>kwargs</strong> – Cookie key-value pairs (underscores converted to hyphens)</p></li>
+</ul>
+</dd>
+</dl>
+<p><strong>Example:</strong></p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># From raw data</span>
+<span class="n">cookies</span> <span class="o">=</span> <span class="n">CookieParser</span><span class="p">(</span><span class="s2">&quot;cookie: session=abc; user=john&quot;</span><span class="p">)</span>
+
+<span class="c1"># From kwargs</span>
+<span class="n">cookies</span> <span class="o">=</span> <span class="n">CookieParser</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">&#39;john&#39;</span><span class="p">)</span>
+
+<span class="c1"># Mixed</span>
+<span class="n">cookies</span> <span class="o">=</span> <span class="n">CookieParser</span><span class="p">(</span><span class="s2">&quot;cookie: a=1&quot;</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<section id="constructor-and-factory-methods">
+<h3>Constructor and Factory Methods<a class="headerlink" href="#constructor-and-factory-methods" title="Link to this heading">¶</a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.__init__">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">__init__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.__init__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.__init__" title="Link to this definition">¶</a></dt>
+<dd><p>Initialize CookieParser with optional data and/or kwargs.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.from_dict">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">from_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cookies</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.from_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.from_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Create CookieParser from a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>cookies</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>]</em>) – Dictionary of cookie name-value pairs</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New CookieParser instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parser_header.parser.CookieParser" title="parser_header.parser.CookieParser">CookieParser</a></p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cookies</span> <span class="o">=</span> <span class="n">CookieParser</span><span class="o">.</span><span class="n">from_dict</span><span class="p">({</span>
+    <span class="s1">&#39;session&#39;</span><span class="p">:</span> <span class="s1">&#39;abc123&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;user&#39;</span><span class="p">:</span> <span class="s1">&#39;john&#39;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.from_kwargs">
+<em class="property"><span class="k"><span class="pre">classmethod</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">from_kwargs</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.from_kwargs"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.from_kwargs" title="Link to this definition">¶</a></dt>
+<dd><p>Create CookieParser from keyword arguments.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>kwargs</strong> – Cookie key-value pairs</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>New CookieParser instance</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parser_header.parser.CookieParser" title="parser_header.parser.CookieParser">CookieParser</a></p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cookies</span> <span class="o">=</span> <span class="n">CookieParser</span><span class="o">.</span><span class="n">from_kwargs</span><span class="p">(</span>
+    <span class="n">session</span><span class="o">=</span><span class="s1">&#39;abc123&#39;</span><span class="p">,</span>
+    <span class="n">auth_token</span><span class="o">=</span><span class="s1">&#39;xyz&#39;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="parsing-method">
+<h3>Parsing Method<a class="headerlink" href="#parsing-method" title="Link to this heading">¶</a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.parse">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">parse</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.parse"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.parse" title="Link to this definition">¶</a></dt>
+<dd><p>Parse cookies from raw data and/or kwargs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><em>bytes</em></a><em> | </em><em>None</em>) – Raw cookie string/bytes</p></li>
+<li><p><strong>kwargs</strong> – Additional cookies as key=value pairs</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of cookies</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cookies</span> <span class="o">=</span> <span class="n">CookieParser</span><span class="p">()</span>
+<span class="n">cookies</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;cookie: a=1; b=2&quot;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;3&#39;</span><span class="p">)</span>
+<span class="c1"># Result: {&#39;a&#39;: &#39;1&#39;, &#39;b&#39;: &#39;2&#39;, &#39;c&#39;: &#39;3&#39;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="setting-methods">
+<h3>Setting Methods<a class="headerlink" href="#setting-methods" title="Link to this heading">¶</a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.set">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">set</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.set"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.set" title="Link to this definition">¶</a></dt>
+<dd><p>Set cookie(s).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>) – Cookie name (optional if using kwargs)</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><em>None</em>) – Cookie value (required if name provided)</p></li>
+<li><p><strong>kwargs</strong> – Cookie key=value pairs</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>self for chaining</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parser_header.parser.CookieParser" title="parser_header.parser.CookieParser">CookieParser</a></p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.14)"><strong>ValueError</strong></a> – If name provided without value</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cookies</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">,</span> <span class="s1">&#39;abc123&#39;</span><span class="p">)</span>
+<span class="n">cookies</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="s1">&#39;john&#39;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s1">&#39;xyz&#39;</span><span class="p">)</span>
+<span class="n">cookies</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.update">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.update" title="Link to this definition">¶</a></dt>
+<dd><p>Update cookies from dict and/or kwargs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em>] </em><em>| </em><em>None</em>) – Dictionary of cookies</p></li>
+<li><p><strong>kwargs</strong> – Additional cookies</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>self for chaining</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parser_header.parser.CookieParser" title="parser_header.parser.CookieParser">CookieParser</a></p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cookies</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="s1">&#39;1&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="s1">&#39;2&#39;</span><span class="p">},</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;3&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.remove">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">remove</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">names</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.remove"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.remove" title="Link to this definition">¶</a></dt>
+<dd><p>Remove cookies by name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>names</strong> – Cookie names to remove</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>self for chaining</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#parser_header.parser.CookieParser" title="parser_header.parser.CookieParser">CookieParser</a></p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cookies</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">,</span> <span class="s1">&#39;token&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.clear">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.clear" title="Link to this definition">¶</a></dt>
+<dd><p>Clear all cookies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>self for chaining</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#parser_header.parser.CookieParser" title="parser_header.parser.CookieParser">CookieParser</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="accessing-methods">
+<h3>Accessing Methods<a class="headerlink" href="#accessing-methods" title="Link to this heading">¶</a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.get">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">get</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.get"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.get" title="Link to this definition">¶</a></dt>
+<dd><p>Get specific cookie value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a>) – Cookie name (underscores and hyphens interchangeable)</p></li>
+<li><p><strong>default</strong> – Default value if not found</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Cookie value or default</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a> | None</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cookies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">)</span>           <span class="c1"># &#39;abc123&#39;</span>
+<span class="n">cookies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;user-id&#39;</span><span class="p">)</span>           <span class="c1"># Works</span>
+<span class="n">cookies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">)</span>           <span class="c1"># Also works</span>
+<span class="n">cookies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;missing&#39;</span><span class="p">,</span> <span class="s1">&#39;N/A&#39;</span><span class="p">)</span>    <span class="c1"># &#39;N/A&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.__getitem__">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">__getitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.__getitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.__getitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Get cookie with bracket notation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> – Cookie name</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.14)"><strong>KeyError</strong></a> – If cookie not found</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cookies</span><span class="p">[</span><span class="s1">&#39;session&#39;</span><span class="p">]</span>  <span class="c1"># &#39;abc123&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.__setitem__">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">__setitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.__setitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.__setitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Set cookie with bracket notation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cookies</span><span class="p">[</span><span class="s1">&#39;session&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;new_value&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.__delitem__">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">__delitem__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.__delitem__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.__delitem__" title="Link to this definition">¶</a></dt>
+<dd><p>Delete cookie with bracket notation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Raises<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#KeyError" title="(in Python v3.14)"><strong>KeyError</strong></a> – If cookie not found</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">del</span> <span class="n">cookies</span><span class="p">[</span><span class="s1">&#39;session&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.__contains__">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">__contains__</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.__contains__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.__contains__" title="Link to this definition">¶</a></dt>
+<dd><p>Check if cookie exists.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>True if cookie exists</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.14)">bool</a></p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;session&#39;</span> <span class="ow">in</span> <span class="n">cookies</span>  <span class="c1"># True/False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.__len__">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">__len__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.__len__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.__len__" title="Link to this definition">¶</a></dt>
+<dd><p>Get number of cookies.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Cookie count</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.14)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.__iter__">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">__iter__</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.__iter__"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.__iter__" title="Link to this definition">¶</a></dt>
+<dd><p>Iterate over cookie names.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">cookies</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">cookies</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.keys">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.keys" title="Link to this definition">¶</a></dt>
+<dd><p>Get list of cookie names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of names</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.values">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.values" title="Link to this definition">¶</a></dt>
+<dd><p>Get list of cookie values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of values</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.items">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.items" title="Link to this definition">¶</a></dt>
+<dd><p>Get list of (name, value) tuples.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of tuples</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.14)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="output-methods">
+<h3>Output Methods<a class="headerlink" href="#output-methods" title="Link to this heading">¶</a></h3>
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.to_cookie_header">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">to_cookie_header</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.to_cookie_header"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.to_cookie_header" title="Link to this definition">¶</a></dt>
+<dd><p>Convert cookies to Cookie header format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><em>bytes</em></a><em> | </em><em>None</em>) – Optional new data to parse first</p></li>
+<li><p><strong>kwargs</strong> – Additional cookies to include</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Cookie header string (semicolon-separated)</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a></p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cookies</span> <span class="o">=</span> <span class="n">CookieParser</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="s1">&#39;abc&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="s1">&#39;john&#39;</span><span class="p">)</span>
+
+<span class="n">cookies</span><span class="o">.</span><span class="n">to_cookie_header</span><span class="p">()</span>
+<span class="c1"># &quot;session=abc; user=john&quot;</span>
+
+<span class="n">cookies</span><span class="o">.</span><span class="n">to_cookie_header</span><span class="p">(</span><span class="n">token</span><span class="o">=</span><span class="s1">&#39;xyz&#39;</span><span class="p">)</span>
+<span class="c1"># &quot;session=abc; user=john; token=xyz&quot;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="parser_header.parser.CookieParser.to_dict">
+<span class="sig-prename descclassname"><span class="pre">CookieParser.</span></span><span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/parser_header/parser.html#CookieParser.to_dict"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#parser_header.parser.CookieParser.to_dict" title="Link to this definition">¶</a></dt>
+<dd><p>Get cookies as dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bytes" title="(in Python v3.14)"><em>bytes</em></a><em> | </em><em>None</em>) – Optional new data to parse first</p></li>
+<li><p><strong>kwargs</strong> – Additional cookies to include</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dictionary of cookies</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.14)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)">str</a>]</p>
+</dd>
+</dl>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cookies</span> <span class="o">=</span> <span class="n">CookieParser</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+
+<span class="n">cookies</span><span class="o">.</span><span class="n">to_dict</span><span class="p">()</span>
+<span class="c1"># {&#39;session&#39;: &#39;abc&#39;}</span>
+
+<span class="n">cookies</span><span class="o">.</span><span class="n">to_dict</span><span class="p">(</span><span class="n">extra</span><span class="o">=</span><span class="s1">&#39;value&#39;</span><span class="p">)</span>
+<span class="c1"># {&#39;session&#39;: &#39;abc&#39;, &#39;extra&#39;: &#39;value&#39;}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</section>
+<section id="method-chaining">
+<h3>Method Chaining<a class="headerlink" href="#method-chaining" title="Link to this heading">¶</a></h3>
+<p>All mutating methods return <code class="docutils literal notranslate"><span class="pre">self</span></code> for chaining:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">cookies</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="n">CookieParser</span><span class="p">()</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">,</span> <span class="s1">&#39;abc&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="s1">&#39;john&#39;</span><span class="p">,</span> <span class="n">token</span><span class="o">=</span><span class="s1">&#39;xyz&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;token&#39;</span><span class="p">)</span>
+    <span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;lang&#39;</span><span class="p">:</span> <span class="s1">&#39;en&#39;</span><span class="p">})</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cookies</span><span class="o">.</span><span class="n">to_cookie_header</span><span class="p">())</span>
+<span class="c1"># &quot;session=abc; user=john; lang=en&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="complete-example">
+<h3>Complete Example<a class="headerlink" href="#complete-example" title="Link to this heading">¶</a></h3>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">parser_header</span> <span class="kn">import</span> <span class="n">CookieParser</span>
+
+<span class="c1"># Create and manipulate</span>
+<span class="n">cookies</span> <span class="o">=</span> <span class="n">CookieParser</span><span class="p">(</span><span class="n">session</span><span class="o">=</span><span class="s1">&#39;initial&#39;</span><span class="p">)</span>
+<span class="n">cookies</span><span class="o">.</span><span class="n">set</span><span class="p">(</span><span class="n">user</span><span class="o">=</span><span class="s1">&#39;john&#39;</span><span class="p">)</span>
+<span class="n">cookies</span><span class="p">[</span><span class="s1">&#39;token&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;xyz123&#39;</span>
+<span class="n">cookies</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;lang&#39;</span><span class="p">:</span> <span class="s1">&#39;en&#39;</span><span class="p">},</span> <span class="n">theme</span><span class="o">=</span><span class="s1">&#39;dark&#39;</span><span class="p">)</span>
+
+<span class="c1"># Access</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cookies</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;session&#39;</span><span class="p">))</span>  <span class="c1"># &#39;initial&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cookies</span><span class="p">[</span><span class="s1">&#39;user&#39;</span><span class="p">])</span>         <span class="c1"># &#39;john&#39;</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cookies</span><span class="p">))</span>            <span class="c1"># 5</span>
+
+<span class="c1"># Check existence</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;token&#39;</span> <span class="ow">in</span> <span class="n">cookies</span><span class="p">)</span>      <span class="c1"># True</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;missing&#39;</span> <span class="ow">in</span> <span class="n">cookies</span><span class="p">)</span>    <span class="c1"># False</span>
+
+<span class="c1"># Iterate</span>
+<span class="k">for</span> <span class="n">name</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">cookies</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">=</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+<span class="c1"># Output</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cookies</span><span class="o">.</span><span class="n">to_cookie_header</span><span class="p">())</span>
+<span class="c1"># &quot;session=initial; user=john; token=xyz123; lang=en; theme=dark&quot;</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">cookies</span><span class="o">.</span><span class="n">to_dict</span><span class="p">())</span>
+<span class="c1"># {&#39;session&#39;: &#39;initial&#39;, &#39;user&#39;: &#39;john&#39;, &#39;token&#39;: &#39;xyz123&#39;, &#39;lang&#39;: &#39;en&#39;, &#39;theme&#39;: &#39;dark&#39;}</span>
+
+<span class="c1"># Remove and clear</span>
+<span class="n">cookies</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;theme&#39;</span><span class="p">,</span> <span class="s1">&#39;lang&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cookies</span><span class="p">))</span>  <span class="c1"># 3</span>
+
+<span class="n">cookies</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cookies</span><span class="p">))</span>  <span class="c1"># 0</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+        </article>
+      </div>
+      <footer>
+        
+        <div class="related-pages">
+          <a class="next-page" href="exceptions.html">
+              <div class="page-info">
+                <div class="context">
+                  <span>Next</span>
+                </div>
+                <div class="title">Exceptions</div>
+              </div>
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+            </a>
+          <a class="prev-page" href="header_parser.html">
+              <svg class="furo-related-icon"><use href="#svg-arrow-right"></use></svg>
+              <div class="page-info">
+                <div class="context">
+                  <span>Previous</span>
+                </div>
+                
+                <div class="title">HeaderParser API</div>
+                
+              </div>
+            </a>
+        </div>
+        <div class="bottom-of-page">
+          <div class="left-details">
+            <div class="copyright">
+                Copyright &#169; 2025, Hadi Cahyadi
+            </div>
+            Made with <a href="https://www.sphinx-doc.org/">Sphinx</a> and <a class="muted-link" href="https://pradyunsg.me">@pradyunsg</a>'s
+            
+            <a href="https://github.com/pradyunsg/furo">Furo</a>
+            
+          </div>
+          <div class="right-details">
+            <div class="icons">
+              <a class="muted-link " href="https://github.com/cumulus13/pyheaderparse" aria-label="GitHub">
+                <svg stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 16 16">
+                    <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+                </svg>
+            </a>
+              
+            </div>
+          </div>
+        </div>
+        
+      </footer>
+    </div>
+    <aside class="toc-drawer">
+      
+      
+      <div class="toc-sticky toc-scroll">
+        <div class="toc-title-container">
+          <span class="toc-title">
+            On this page
+          </span>
+        </div>
+        <div class="toc-tree-container">
+          <div class="toc-tree">
+            <ul>
+<li><a class="reference internal" href="#">CookieParser API</a><ul>
+<li><a class="reference internal" href="#cookieparser-class">CookieParser Class</a><ul>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser"><code class="docutils literal notranslate"><span class="pre">CookieParser</span></code></a></li>
+<li><a class="reference internal" href="#constructor-and-factory-methods">Constructor and Factory Methods</a><ul>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.__init__"><code class="docutils literal notranslate"><span class="pre">CookieParser.__init__()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.from_dict"><code class="docutils literal notranslate"><span class="pre">CookieParser.from_dict()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.from_kwargs"><code class="docutils literal notranslate"><span class="pre">CookieParser.from_kwargs()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#parsing-method">Parsing Method</a><ul>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.parse"><code class="docutils literal notranslate"><span class="pre">CookieParser.parse()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#setting-methods">Setting Methods</a><ul>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.set"><code class="docutils literal notranslate"><span class="pre">CookieParser.set()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.update"><code class="docutils literal notranslate"><span class="pre">CookieParser.update()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.remove"><code class="docutils literal notranslate"><span class="pre">CookieParser.remove()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.clear"><code class="docutils literal notranslate"><span class="pre">CookieParser.clear()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#accessing-methods">Accessing Methods</a><ul>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.get"><code class="docutils literal notranslate"><span class="pre">CookieParser.get()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.__getitem__"><code class="docutils literal notranslate"><span class="pre">CookieParser.__getitem__()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.__setitem__"><code class="docutils literal notranslate"><span class="pre">CookieParser.__setitem__()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.__delitem__"><code class="docutils literal notranslate"><span class="pre">CookieParser.__delitem__()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.__contains__"><code class="docutils literal notranslate"><span class="pre">CookieParser.__contains__()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.__len__"><code class="docutils literal notranslate"><span class="pre">CookieParser.__len__()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.__iter__"><code class="docutils literal notranslate"><span class="pre">CookieParser.__iter__()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.keys"><code class="docutils literal notranslate"><span class="pre">CookieParser.keys()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.values"><code class="docutils literal notranslate"><span class="pre">CookieParser.values()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.items"><code class="docutils literal notranslate"><span class="pre">CookieParser.items()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#output-methods">Output Methods</a><ul>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.to_cookie_header"><code class="docutils literal notranslate"><span class="pre">CookieParser.to_cookie_header()</span></code></a></li>
+<li><a class="reference internal" href="#parser_header.parser.CookieParser.to_dict"><code class="docutils literal notranslate"><span class="pre">CookieParser.to_dict()</span></code></a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#method-chaining">Method Chaining</a></li>
+<li><a class="reference internal" href="#complete-example">Complete Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+          </div>
+        </div>
+      </div>
+      
+      
+    </aside>
+  </div>
+</div><script src="../_static/documentation_options.js?v=4ebf8126"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/scripts/furo.js?v=46bd48cc"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    </body>
+</html>

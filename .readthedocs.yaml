@@ -1,0 +1,36 @@
+# Read the Docs configuration file for pyheaderparse
+# See https://docs.readthedocs.io/en/stable/config-file/v2.html
+
+version: 2
+
+# Build settings
+build:
+  os: ubuntu-22.04
+  tools:
+    python: "3.11"
+  jobs:
+    pre_build:
+      # Create placeholder files for logo/favicon if they don't exist
+      - mkdir -p docs/_static
+      - touch docs/_static/logo.png || true
+      - touch docs/_static/favicon.ico || true
+
+# Build documentation in the docs/ directory with Sphinx
+sphinx:
+  builder: html
+  configuration: docs/conf.py
+  fail_on_warning: false
+
+# Formats to build (optional)
+formats:
+  - pdf
+  - epub
+
+# Python configuration
+python:
+  install:
+    # Install the package itself
+    - method: pip
+      path: .
+    # Install documentation dependencies
+    - requirements: docs/requirements.txt

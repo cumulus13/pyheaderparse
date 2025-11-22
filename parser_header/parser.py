@@ -757,7 +757,7 @@ class HeaderParser:
         }
     
     def get_client_hints(self) -> Dict[str, Any]:
-        """Get all Client Hints (Sec-CH-*) headers."""
+        """Get all Client Hints (``Sec-CH-*``) headers."""
         hints = {}
         for name, value in self._headers.items():
             if name.startswith('sec-ch-'):

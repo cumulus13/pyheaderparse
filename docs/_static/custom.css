@@ -1,0 +1,278 @@
+/* Custom CSS for pyheaderparse documentation */
+/* Dark theme enhancements */
+
+/* ============================================
+   ROOT VARIABLES - DARK THEME
+   ============================================ */
+:root {
+    --color-primary: #B388FF;
+    --color-primary-dark: #7C4DFF;
+    --color-success: #00E676;
+    --color-warning: #FFD740;
+    --color-error: #FF5252;
+    --color-info: #40C4FF;
+}
+
+/* ============================================
+   CODE BLOCKS
+   ============================================ */
+/* Dark code block styling */
+.highlight {
+    border-radius: 8px;
+    margin: 1em 0;
+}
+
+.highlight pre {
+    padding: 1em;
+    border-radius: 8px;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+/* Inline code */
+code.literal {
+    background: rgba(179, 136, 255, 0.15);
+    color: #B388FF;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    font-size: 0.9em;
+}
+
+/* Dark mode inline code */
+body[data-theme="dark"] code.literal,
+.dark code.literal {
+    background: rgba(179, 136, 255, 0.2);
+    color: #D4BBFF;
+}
+
+/* ============================================
+   ADMONITIONS
+   ============================================ */
+.admonition {
+    border-radius: 8px;
+    padding: 1em;
+    margin: 1.5em 0;
+    border-left: 4px solid;
+}
+
+.admonition-title {
+    font-weight: 600;
+    margin-bottom: 0.5em;
+}
+
+/* Note */
+.admonition.note {
+    background: rgba(64, 196, 255, 0.1);
+    border-color: var(--color-info);
+}
+
+/* Warning */
+.admonition.warning {
+    background: rgba(255, 215, 64, 0.1);
+    border-color: var(--color-warning);
+}
+
+/* Danger/Error */
+.admonition.danger,
+.admonition.error {
+    background: rgba(255, 82, 82, 0.1);
+    border-color: var(--color-error);
+}
+
+/* Tip/Hint */
+.admonition.tip,
+.admonition.hint {
+    background: rgba(0, 230, 118, 0.1);
+    border-color: var(--color-success);
+}
+
+/* ============================================
+   TABLES
+   ============================================ */
+table.docutils {
+    border-collapse: collapse;
+    width: 100%;
+    margin: 1.5em 0;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+table.docutils th {
+    background: rgba(179, 136, 255, 0.2);
+    padding: 0.75em 1em;
+    text-align: left;
+    font-weight: 600;
+}
+
+table.docutils td {
+    padding: 0.75em 1em;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+table.docutils tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   NAVIGATION
+   ============================================ */
+/* Sidebar styling */
+.sidebar-brand {
+    padding: 1em;
+}
+
+.sidebar-brand-text {
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+/* Active nav item */
+.sidebar-tree .current > .reference {
+    color: var(--color-primary);
+    font-weight: 600;
+}
+
+/* ============================================
+   CONTENT
+   ============================================ */
+/* Main content area */
+.content {
+    max-width: 900px;
+}
+
+/* Headings */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 600;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+h1 {
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: 0.3em;
+}
+
+h2 {
+    border-bottom: 1px solid rgba(179, 136, 255, 0.3);
+    padding-bottom: 0.2em;
+}
+
+/* Links */
+a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: var(--color-primary-dark);
+    text-decoration: underline;
+}
+
+/* ============================================
+   API DOCUMENTATION
+   ============================================ */
+/* Method signatures */
+dl.py.method > dt,
+dl.py.function > dt,
+dl.py.class > dt {
+    background: rgba(179, 136, 255, 0.1);
+    padding: 0.5em 1em;
+    border-radius: 6px;
+    font-family: monospace;
+    margin-bottom: 0.5em;
+}
+
+/* Parameter descriptions */
+dl.field-list > dt {
+    font-weight: 600;
+    color: var(--color-primary);
+}
+
+/* ============================================
+   COPY BUTTON
+   ============================================ */
+.copybtn {
+    background: rgba(179, 136, 255, 0.2) !important;
+    border: none !important;
+    border-radius: 4px !important;
+    transition: background 0.2s !important;
+}
+
+.copybtn:hover {
+    background: rgba(179, 136, 255, 0.4) !important;
+}
+
+/* ============================================
+   BADGES/SHIELDS
+   ============================================ */
+.badges img,
+a > img[alt*="badge"],
+a > img[alt*="PyPI"],
+a > img[alt*="Python"],
+a > img[alt*="License"],
+a > img[alt*="Documentation"] {
+    margin-right: 0.5em;
+    margin-bottom: 0.5em;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .content {
+        padding: 1em;
+    }
+
+    table.docutils {
+        font-size: 0.9em;
+    }
+
+    .highlight pre {
+        font-size: 0.85em;
+    }
+}
+
+/* ============================================
+   CUSTOM CLASSES
+   ============================================ */
+/* Output block styling */
+.output {
+    background: rgba(0, 0, 0, 0.3);
+    border-left: 3px solid var(--color-success);
+    padding: 1em;
+    margin: 1em 0;
+    border-radius: 0 8px 8px 0;
+    font-family: monospace;
+}
+
+/* Version badge */
+.version-badge {
+    display: inline-block;
+    background: var(--color-primary);
+    color: white;
+    padding: 0.2em 0.6em;
+    border-radius: 4px;
+    font-size: 0.85em;
+    font-weight: 600;
+}
+
+/* Feature list */
+.feature-list {
+    list-style: none;
+    padding: 0;
+}
+
+.feature-list li {
+    padding: 0.5em 0;
+    padding-left: 1.5em;
+    position: relative;
+}
+
+.feature-list li::before {
+    content: "✓";
+    position: absolute;
+    left: 0;
+    color: var(--color-success);
+    font-weight: bold;
+}

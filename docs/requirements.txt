@@ -1,0 +1,15 @@
+# Documentation dependencies for pyheaderparse
+# Install with: pip install -r docs/requirements.txt
+
+# Sphinx core
+sphinx>=7.0.0
+
+# Furo theme (modern dark theme)
+furo>=2024.1.29
+
+# Extensions
+sphinx-copybutton>=0.5.2
+myst-parser>=2.0.0
+
+# Optional: for API documentation
+sphinx-autodoc-typehints>=1.25.0
