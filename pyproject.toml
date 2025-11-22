@@ -3,13 +3,13 @@ requires = [ "setuptools>=77.0.0", "wheel",]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "parser_header"
-version = "1.0.2"
+name = "pyheaderparse"
+version = "1.0.3"
 description = "A robust HTTP header and cookie parser library"
 readme = "README.md"
 license = "MIT"
 license-files = [ "LICENSE",]
-keywords = [ "http", "header", "parser", "cookie", "request", "response", "web", "client-hints", "sec-ch-ua",]
+keywords = [ "http", "header", "parser", "cookie", "request", "response", "web", "client-hints", "sec-ch-ua", "http-headers", "cookie-parser", "header-parser",]
 classifiers = [ "Development Status :: 5 - Production/Stable", "Intended Audience :: Developers", "Operating System :: OS Independent", "Programming Language :: Python :: 3", "Programming Language :: Python :: 3.8", "Programming Language :: Python :: 3.9", "Programming Language :: Python :: 3.10", "Programming Language :: Python :: 3.11", "Programming Language :: Python :: 3.12", "Topic :: Internet :: WWW/HTTP", "Topic :: Software Development :: Libraries :: Python Modules", "Typing :: Typed",]
 requires-python = ">=3.8"
 dependencies = []
@@ -25,13 +25,13 @@ email = "cumulus13@gmail.com"
 dev = [ "pytest>=7.0", "pytest-cov>=4.0", "black>=23.0", "mypy>=1.0", "ruff>=0.1.0",]
 
 [project.urls]
-Homepage = "https://github.com/cumulus13/parser_header"
-Documentation = "https://github.com/cumulus13/parser_header#readme"
-Repository = "https://github.com/cumulus13/parser_header"
-Issues = "https://github.com/cumulus13/parser_header/issues"
+Homepage = "https://github.com/cumulus13/pyheaderparse"
+Documentation = "https://github.com/cumulus13/pyheaderparse#readme"
+Repository = "https://github.com/cumulus13/pyheaderparse"
+Issues = "https://github.com/cumulus13/pyheaderparse/issues"
 
 [project.scripts]
-parser-header = "parser_header.cli:main"
+pyheaderparse = "parser_header.cli:main"
 
 [tool.black]
 line-length = 100

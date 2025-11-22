@@ -1,8 +1,8 @@
-# parser_header
+# pyheaderparse
 
-HTTP header and cookie parser library for Python.
+A robust HTTP header and cookie parser library for Python.
 
-[![PyPI version](https://badge.fury.io/py/parser_header.svg)](https://badge.fury.io/py/parser_header)
+[![PyPI version](https://badge.fury.io/py/pyheaderparse.svg)](https://badge.fury.io/py/pyheaderparse)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -21,7 +21,7 @@ HTTP header and cookie parser library for Python.
 ## Installation
 
 ```bash
-pip install parser_header
+pip install pyheaderparse
 ```
 
 ## Table of Contents
@@ -973,7 +973,7 @@ print(parser.get_cookies_as_header())
 
 ```bash
 # From file
-$ parser-header parse -f headers.txt
+$ pyheaderparse parse -f headers.txt
 {
   "content-type": {"value": "application/json", "params": {}},
   "content-length": 1024,
@@ -981,18 +981,18 @@ $ parser-header parse -f headers.txt
 }
 
 # Get specific header
-$ parser-header parse -f headers.txt --header user-agent
+$ pyheaderparse parse -f headers.txt --header user-agent
 "Mozilla/5.0"
 
 # From stdin
-$ cat headers.txt | parser-header parse --stdin
+$ cat headers.txt | pyheaderparse parse --stdin
 {
   "content-type": {"value": "application/json", "params": {}},
   ...
 }
 
 # Raw output format
-$ parser-header parse -f headers.txt --format raw
+$ pyheaderparse parse -f headers.txt --format raw
 content-type: application/json
 content-length: 1024
 user-agent: Mozilla/5.0
@@ -1002,7 +1002,7 @@ user-agent: Mozilla/5.0
 
 ```bash
 # From full headers file
-$ parser-header cookies -f headers.txt --full-headers
+$ pyheaderparse cookies -f headers.txt --full-headers
 {
   "session": "abc123",
   "user": "john",
@@ -1010,15 +1010,15 @@ $ parser-header cookies -f headers.txt --full-headers
 }
 
 # As Cookie header format
-$ parser-header cookies -f headers.txt --full-headers --as-header
+$ pyheaderparse cookies -f headers.txt --full-headers --as-header
 session=abc123; user=john; token=xyz789
 
 # Get specific cookie
-$ parser-header cookies -f headers.txt --full-headers -c session
+$ pyheaderparse cookies -f headers.txt --full-headers -c session
 abc123
 
 # From cookie-only file
-$ parser-header cookies -f cookies.txt
+$ pyheaderparse cookies -f cookies.txt
 {
   "session": "abc123",
   "user": "john"
@@ -1028,7 +1028,7 @@ $ parser-header cookies -f cookies.txt
 ### Show Header Info
 
 ```bash
-$ parser-header info -f headers.txt
+$ pyheaderparse info -f headers.txt
 {
   "total_headers": 15,
   "total_cookies": 3,
@@ -1189,8 +1189,8 @@ except EncodingError as e:
 
 ```bash
 # Clone repository
-git clone https://github.com/cumulus13/parser_header.git
-cd parser_header
+git clone https://github.com/cumulus13/pyheaderparse.git
+cd pyheaderparse
 
 # Install dev dependencies
 pip install -e ".[dev]"
